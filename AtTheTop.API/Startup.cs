@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AtTheTop.API.Data;
 using AutoMapper;
-// using AtTheTop.API.Helpers;
+using AtTheTop.API.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -43,7 +43,7 @@ namespace AtTheTop.API
             services.AddCors();
             services.AddAutoMapper();
             services.AddScoped<IAuthRepository, AuthRepository>();
-            services.AddScoped<IDatingRepository, DatingRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
                     options.TokenValidationParameters = new TokenValidationParameters
@@ -72,7 +72,7 @@ namespace AtTheTop.API
 
                         var error = context.Features.Get<IExceptionHandlerFeature>();
                         if (error != null) {
-                            // context.Response.AddApplicationError(error.Error.Message);
+                            context.Response.AddApplicationError(error.Error.Message);
                             await context.Response.WriteAsync(error.Error.Message);
                         }
                     });

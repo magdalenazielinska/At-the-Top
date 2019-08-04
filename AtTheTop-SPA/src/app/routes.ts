@@ -5,6 +5,8 @@ import { UserProfileComponent } from './users/user-profile/user-profile.componen
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserAddsummitsComponent } from './users/user-addsummits/user-addsummits.component';
+import { MemberEditResolver } from './_resolvers/member-edit.resolver';
+import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -13,11 +15,10 @@ export const appRoutes: Routes = [
         runGuardsAndResolvers: 'always',
         canActivate: [AuthGuard],
         children: [
-            { path: 'user/profile', component: UserProfileComponent },
-            { path: 'user/edit', component: UserEditComponent,
-                canDeactivate: [PreventUnsavedChanges] },
-            { path: 'user/addsummits', component: UserAddsummitsComponent,
-                canDeactivate: [PreventUnsavedChanges] },
+            { path: 'user/:id', component: UserProfileComponent,
+                resolve: {user: MemberDetailResolver} },
+            { path: 'user/edit', component: UserEditComponent },
+            { path: 'user/addsummits', component: UserAddsummitsComponent },
         ]
     },
     { path: '**', redirectTo: '', pathMatch: 'full' },

@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AtTheTop.API.Data
 {
-    public class DatingRepository : IDatingRepository
+    public class UserRepository : IUserRepository
     {
         private readonly DataContext _context;
-        public DatingRepository(DataContext context)
+        public UserRepository(DataContext context)
         {
             _context = context;
 

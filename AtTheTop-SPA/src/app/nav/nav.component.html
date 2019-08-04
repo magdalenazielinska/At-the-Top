@@ -4,15 +4,15 @@
 
     <div *ngIf="loggedIn()" class="dropdown" dropdown>
       <a class="dropdown-toggle text-light" dropdownToggle>
-        Welcome {{authService.decodedToken?.unique_name | titlecase}}
+        Witaj, {{authService.decodedToken?.unique_name | titlecase}}
       </a>
     
       <div class="dropdown-menu mt-3" *dropdownMenu>
-        <a class="dropdown-item" [routerLink]="['/user/profile']"><i class="fa fa-user"></i> Twój profil</a>
+        <a class="dropdown-item" [routerLink]="['/user/', authService.decodedToken?.nameid]"><i class="fa fa-user"></i> Twój profil</a>
         <a class="dropdown-item" [routerLink]="['/user/edit']"><i class="fa fa-cog"></i> Edytuj profil</a>
         <a class="dropdown-item" [routerLink]="['/user/addsummits']"><i class="fa fa-pencil"></i> Dodaj szczyty</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i> Logout</a>
+        <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i> Wyloguj</a>
       </div>
     </div>
 

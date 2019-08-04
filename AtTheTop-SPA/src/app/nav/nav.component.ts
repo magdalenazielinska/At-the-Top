@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
   model: any = {};
@@ -18,7 +18,7 @@ export class NavComponent implements OnInit {
 
   login() {
     this.authService.login(this.model).subscribe(next => {
-      this.alertify.success('Logged in successfully');
+      this.alertify.success('Witaj górski maniaku!');
     }, error => {
       this.alertify.error(error);
     }, () => {
@@ -32,7 +32,7 @@ export class NavComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
-    this.alertify.message('Logged out');
+    this.alertify.message('Do zobaczenia wkrótce!');
     this.router.navigate(['/home']);
   }
 }
