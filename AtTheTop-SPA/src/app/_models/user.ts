@@ -9,4 +9,5 @@ export interface User {
     country?: string;
     profilePhotoUrl?: string;
     summits?: Summit[];
+    pageUrl?: string;
 }

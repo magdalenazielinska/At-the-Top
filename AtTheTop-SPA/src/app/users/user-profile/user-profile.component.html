@@ -26,12 +26,12 @@
             <p>5 ostatnich</p>
           </div>
         </div>
-        <div class="card-footer">
-          <div class="btn-group d-flex">
-            <a href="/" target="_blank" class="btn btn-primary w-100" href="/">Strona www</a>
+        <div class="card-footer" *ngIf="user.pageUrl || checkProfileOwner()">
+          <div class="btn-group d-flex" *ngIf="user.pageUrl">
+            <a href="{{user.pageUrl}}" target="_blank" class="btn btn-primary w-100">Strona www</a>
           </div>
           <div *ngIf="checkProfileOwner()">
-            <hr>
+            <hr *ngIf="user.pageUrl">
             <div class="btn-group d-flex">
               <a [routerLink]="['/user/edit']" class="btn btn-outline-secondary btn-sm w-100 mr-1" href="/">Edytuj profil</a>
               <a [routerLink]="['/user/addsummits']" class="btn btn-outline-info btn-sm w-100" href="/">Dodaj szczyty</a>

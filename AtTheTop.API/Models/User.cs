@@ -15,5 +15,6 @@ namespace AtTheTop.API.Models
         public string Country { get; set; }
         public string ProfilePhotoUrl { get; set; }
         public ICollection<Summit> Summits { get; set; }
+        public string PageUrl { get; set; }
     }
 }
