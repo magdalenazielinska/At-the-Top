@@ -13,7 +13,7 @@ namespace AtTheTop.API.Dtos
         public string City { get; set; }
         public string Country { get; set; }
         public string ProfilePhotoUrl { get; set; }
-        public ICollection<Summit> Summits { get; set; }
+        public ICollection<SummitsForUserDto> Summits { get; set; }
         public string PageUrl { get; set; }
     }
 }

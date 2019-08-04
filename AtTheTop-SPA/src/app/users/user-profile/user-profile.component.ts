@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/_models/user';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
+import { Summit } from 'src/app/_models/summit';
 
 @Component({
   selector: 'app-user-profile',
@@ -10,6 +11,7 @@ import { AuthService } from 'src/app/_services/auth.service';
 })
 export class UserProfileComponent implements OnInit {
   user: User;
+  summits: Summit[];
 
   constructor(private route: ActivatedRoute, private authService: AuthService) { }
 
@@ -17,6 +19,9 @@ export class UserProfileComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.user = data['user'];
     });
+
+    this.summits = this.getSummits();
+    console.log(this.summits);
   }
 
   checkProfileOwner() {
@@ -25,6 +30,14 @@ export class UserProfileComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  getSummits() {
+    const summitsList = [];
+    for (let i = 0; i < this.user.summits.length; i++) {
+      summitsList.push(this.user.summits[i]);
+    }
+    return summitsList;
   }
 
 }

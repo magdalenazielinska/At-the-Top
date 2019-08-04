@@ -17,8 +17,9 @@ export const appRoutes: Routes = [
         children: [
             { path: 'user/:id', component: UserProfileComponent,
                 resolve: {user: MemberDetailResolver} },
-            { path: 'user/edit', component: UserEditComponent },
-            { path: 'user/addsummits', component: UserAddsummitsComponent },
+            { path: 'editprofile', component: UserEditComponent,
+                resolve: {user: MemberEditResolver} },
+            { path: 'addsummits', component: UserAddsummitsComponent },
         ]
     },
     { path: '**', redirectTo: '', pathMatch: 'full' },

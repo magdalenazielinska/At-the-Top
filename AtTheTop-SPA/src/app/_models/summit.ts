@@ -5,7 +5,7 @@ export interface Summit {
     country: string;
     date: string;
     altitude: number;
-    route: string;
-    difficulty: string;
-    userDescription: string;
+    route?: string;
+    difficulty?: string;
+    userDescription?: string;
 }
