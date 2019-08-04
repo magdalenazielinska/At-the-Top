@@ -12,6 +12,7 @@ import { Summit } from 'src/app/_models/summit';
 export class UserProfileComponent implements OnInit {
   user: User;
   summits: Summit[];
+  minAlt: number[];
 
   constructor(private route: ActivatedRoute, private authService: AuthService) { }
 
@@ -21,7 +22,7 @@ export class UserProfileComponent implements OnInit {
     });
 
     this.summits = this.getSummits();
-    console.log(this.summits);
+    this.minAlt = [8000, 7000, 6000, 5000, 4000, 3000, 2000, 1000, 0];
   }
 
   checkProfileOwner() {
@@ -38,6 +39,22 @@ export class UserProfileComponent implements OnInit {
       summitsList.push(this.user.summits[i]);
     }
     return summitsList;
+  }
+
+  checkAltitude(min: number, max: number) {
+    const summitsAltitudes = [];
+    let wantedAltitudes = [];
+
+    this.summits.map(summit => {
+      summitsAltitudes.push(summit.altitude);
+    });
+    wantedAltitudes = summitsAltitudes.filter(el => {
+      return el >= min && el < max;
+    });
+
+    if (wantedAltitudes.length > 0) {
+      return true;
+    }
   }
 
 }
