@@ -1,52 +1,51 @@
-<div class="container mt-4">
+<div class="container mt-4 mb-4">
   <div class="row">
     <h3 class="pl-3 pr-3">{{user.username | titlecase}}, {{user.age}}</h3>
   </div>
   <div class="row">
-    <div class="col-sm-4 mb-4">
-      <div class="card">
-        <div class="p-4">
-          <img src="{{user.profilePhotoUrl}}" alt="{{user.username}}" class="card-img-top rounded-circle">
-        </div>
-        <div class="card-body">
-          <div>
-            <p>{{user.about}}</p>
-          </div>
-          <hr>
-          <div>
-            <strong>Lokalizacja:</strong>
-            <p>{{user.city}}, {{user.country}}</p>
-          </div>
-          <div>
-            <strong>Liczba szczytów:</strong>
-            <p>liczba</p>
-          </div>
-          <div>
-            <strong>Ostatnio zdobyte:</strong>
-            <p>5 ostatnich</p>
-          </div>
-        </div>
-        <div class="card-footer" *ngIf="user.pageUrl || checkProfileOwner()">
-          <div class="btn-group d-flex" *ngIf="user.pageUrl">
-            <a href="{{user.pageUrl}}" target="_blank" class="btn btn-primary w-100">Strona www</a>
-          </div>
-          <div *ngIf="checkProfileOwner()">
-            <hr *ngIf="user.pageUrl">
-            <div class="btn-group d-flex">
-              <a [routerLink]="['/user/edit']" class="btn btn-outline-secondary btn-sm w-100 mr-1" href="/">Edytuj profil</a>
-              <a [routerLink]="['/user/addsummits']" class="btn btn-outline-info btn-sm w-100" href="/">Dodaj szczyty</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-8 mb-4">
       <div class="tab-panel">
         <tabset class="member-tabset">
+          <tab heading="O mnie">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="p-4">
+                  <img src="{{user.profilePhotoUrl}}" alt="{{user.username}}" class="card-img-top rounded-circle">
+                </div>
+                <div class="btn-group d-flex" *ngIf="user.pageUrl">
+                  <a href="{{user.pageUrl}}" target="_blank" class="btn btn-primary w-100">Strona www</a>
+                </div>
+                <div *ngIf="checkProfileOwner()">
+                  <hr *ngIf="user.pageUrl">
+                  <div class="btn-group d-flex">
+                    <a [routerLink]="['/editprofile']" class="btn btn-outline-secondary btn-sm w-100 mr-1" href="/">Edytuj profil</a>
+                    <a [routerLink]="['/addsummits']" class="btn btn-outline-info btn-sm w-100" href="/">Dodaj szczyty</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div>
+                  <p>{{user.about}}</p>
+                </div>
+                <hr>
+                <div>
+                  <strong>Lokalizacja:</strong>
+                  <p>{{user.city}}, {{user.country}}</p>
+                </div>
+                <div>
+                  <strong>Liczba szczytów:</strong>
+                  <p>{{summits.length}}</p>
+                </div>
+                <div>
+                  <strong>Ostatnio zdobyte:</strong>
+                  <p>5 ostatnich</p>
+                </div>
+              </div>
+            </div>
+          </tab>
           <tab heading="Zdobyte szczyty">
             <p *ngIf="summits.length === 0">Użytkownik nie dodał jeszcze żadnych szczytów</p>
             <div class="table-responsive">
-              <table class="table table-hover table-striped" *ngIf="summits.length > 0">
+              <table class="table table-striped" *ngIf="summits.length > 0">
                 <thead>
                   <tr>
                     <th scope="col">Data</th>
@@ -57,23 +56,45 @@
                     <th scope="col">Trudność</th>
                     <th scope="col">Komentarz</th>
                   </tr>
-                </thead>
+                </thead>                
                 <tbody>
-                  <tr *ngFor="let summit of summits">
-                    <td>{{summit.date}}</td>
-                    <td>{{summit.name}}</td>
-                    <td>{{summit.altitude}}</td>
-                    <td>{{summit.mountainRange}}, {{summit.country}}</td>
-                    <td>{{summit.route}}</td>
-                    <td>{{summit.difficulty}}</td>
-                    <td>{{summit.userDescription}}</td>
+                  <tr class="table-primary">
+                    <td colspan="7"><h4 class="text-center">4000+ m n.p.m.</h4></td>
                   </tr>
+                  <ng-container *ngFor="let summit of summits">
+                    <ng-container *ngIf="summit.altitude > 3999 && summit.altitude < 5000">
+                      <tr>
+                        <td>{{summit.date}}</td>
+                        <td>{{summit.name}}</td>
+                        <td>{{summit.altitude}}</td>
+                        <td>{{summit.mountainRange}}, {{summit.country}}</td>
+                        <td>{{summit.route}}</td>
+                        <td>{{summit.difficulty}}</td>
+                        <td>{{summit.userDescription}}</td>
+                      </tr>
+                    </ng-container>
+                  </ng-container>
+                  <tr class="table-primary">
+                    <td colspan="7"><h4 class="text-center">3000+ m n.p.m.</h4></td>
+                  </tr>
+                  <ng-container *ngFor="let summit of summits">
+                    <ng-container *ngIf="summit.altitude > 2999 && summit.altitude < 4000">
+                      <tr>
+                        <td>{{summit.date}}</td>
+                        <td>{{summit.name}}</td>
+                        <td>{{summit.altitude}}</td>
+                        <td>{{summit.mountainRange}}, {{summit.country}}</td>
+                        <td>{{summit.route}}</td>
+                        <td>{{summit.difficulty}}</td>
+                        <td>{{summit.userDescription}}</td>
+                      </tr>
+                    </ng-container>
+                  </ng-container>
                 </tbody>
               </table>
             </div>
           </tab>
         </tabset>
       </div>
-    </div>
   </div>
 </div>
