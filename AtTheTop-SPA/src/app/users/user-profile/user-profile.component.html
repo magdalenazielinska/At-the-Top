@@ -44,30 +44,33 @@
       <div class="tab-panel">
         <tabset class="member-tabset">
           <tab heading="Zdobyte szczyty">
-              <table class="table table-hover table-striped">
-                  <thead>
-                    <tr>
-                      <th scope="col">Data</th>
-                      <th scope="col">Szczyt</th>
-                      <th scope="col">Wysokość</th>
-                      <th scope="col">Gdzie</th>
-                      <th scope="col">Droga</th>
-                      <th scope="col">Trudność</th>
-                      <th scope="col">Komentarz</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let summit of summits">
-                      <td>{{summit.date}}</td>
-                      <td>{{summit.name}}</td>
-                      <td>{{summit.altitude}}</td>
-                      <td>{{summit.mountainRange}}, {{summit.country}}</td>
-                      <td>{{summit.route}}</td>
-                      <td>{{summit.difficulty}}</td>
-                      <td>{{summit.userDescription}}</td>
-                    </tr>
-                  </tbody>
-                </table>
+            <p *ngIf="summits.length === 0">Użytkownik nie dodał jeszcze żadnych szczytów</p>
+            <div class="table-responsive">
+              <table class="table table-hover table-striped" *ngIf="summits.length > 0">
+                <thead>
+                  <tr>
+                    <th scope="col">Data</th>
+                    <th scope="col">Szczyt</th>
+                    <th scope="col">Wysokość</th>
+                    <th scope="col">Gdzie</th>
+                    <th scope="col">Droga</th>
+                    <th scope="col">Trudność</th>
+                    <th scope="col">Komentarz</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let summit of summits">
+                    <td>{{summit.date}}</td>
+                    <td>{{summit.name}}</td>
+                    <td>{{summit.altitude}}</td>
+                    <td>{{summit.mountainRange}}, {{summit.country}}</td>
+                    <td>{{summit.route}}</td>
+                    <td>{{summit.difficulty}}</td>
+                    <td>{{summit.userDescription}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </tab>
         </tabset>
       </div>
