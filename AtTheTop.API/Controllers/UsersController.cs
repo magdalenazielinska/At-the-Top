@@ -57,7 +57,7 @@ namespace AtTheTop.API.Controllers
             if (await _repo.SaveAll())
                 return NoContent();
 
-            throw new Exception($"Updating user {id} failed on save");
+            throw new Exception("Nie udało się zapisać zmian");
         }
 
     }

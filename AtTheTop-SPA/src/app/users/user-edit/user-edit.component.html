@@ -1,3 +1,42 @@
-<p>
-  user-edit works!
-</p>
+<div class="container mt-4 mb-4">
+  <h3>Edycja profilu</h3>
+  <div class="tab-panel">
+    <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()">
+      <div class="row">
+          <div class="col-sm-12">
+            <label for="about"><strong class="mb-2">O sobie</strong></label>
+            <textarea id="about" name="about" rows="6" class="form-control mb-4" 
+              [(ngModel)]="user.about"></textarea>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <label for="city"><strong class="mb-2">Miasto</strong></label>
+          <input id="city" name="city" type="text" class="form-control mb-4" 
+            [(ngModel)]="user.city">
+        </div>
+        <div class="col-sm-6">
+          <label for="country"><strong class="mb-2">Kraj</strong></label>
+          <input id="country" name="country" type="text" class="form-control mb-4" 
+            [(ngModel)]="user.country">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <label for="dateOfBirth"><strong class="mb-2">Data urodzenia</strong></label>
+          <input id="dateOfBirth" name="dateOfBirth" type="text" class="form-control mb-4" 
+            [(ngModel)]="user.dateOfBirth">
+        </div>
+        <div class="col-sm-6">
+          <label for="pageUrl"><strong class="mb-2">Strona www</strong></label>
+          <input id="pageUrl" name="pageUrl" type="text" class="form-control mb-4" 
+            [(ngModel)]="user.pageUrl">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="btn-group d-flex mt-4 justify-content-center">
+    <a [routerLink]="['/user/', authService.decodedToken?.nameid]" class="btn btn-info mr-2 w-100">Powrót</a>
+    <button [disabled]="!editForm.dirty" class="btn btn-success ml-2 w-100" form="editForm">Zapisz zmiany</button>
+  </div>
+</div>

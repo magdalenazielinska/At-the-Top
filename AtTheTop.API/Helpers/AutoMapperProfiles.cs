@@ -24,7 +24,7 @@ namespace AtTheTop.API.Helpers
                     opt.ResolveUsing(d => d.DateOfBirth.CalculateAge());
                 });
             CreateMap<Summit, SummitsForUserDto>();
-            // CreateMap<UserForUpdateDto, User>();
+            CreateMap<UserForUpdateDto, User>();
         }
     }
 }

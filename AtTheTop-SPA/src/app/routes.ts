@@ -18,7 +18,7 @@ export const appRoutes: Routes = [
             { path: 'user/:id', component: UserProfileComponent,
                 resolve: {user: MemberDetailResolver} },
             { path: 'editprofile', component: UserEditComponent,
-                resolve: {user: MemberEditResolver} },
+                resolve: {user: MemberEditResolver}, canDeactivate: [PreventUnsavedChanges] },
             { path: 'addsummits', component: UserAddsummitsComponent },
         ]
     },

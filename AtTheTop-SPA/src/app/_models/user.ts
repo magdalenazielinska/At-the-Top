@@ -3,6 +3,7 @@ import { Summit } from './summit';
 export interface User {
     id: number;
     username: string;
+    dateOfBirth?: string;
     age?: number;
     about?: string;
     city?: string;
