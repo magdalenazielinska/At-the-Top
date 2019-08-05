@@ -1,3 +1,53 @@
-<p>
-  user-addsummits works!
-</p>
+<div class="container mt-4 mb-4">
+  <h3>Dodaj nowy szczyt</h3>
+  <div class="tab-panel">
+    <form #editForm="ngForm" id="editForm" (ngSubmit)="addSummit()">
+      <div class="row">
+        <div class="col-sm-4">
+          <label for="date"><strong class="mb-2">Data *</strong> (YYYY-MM-DD)</label>
+          <input id="date" name="date" type="text" class="form-control mb-4">
+        </div>
+        <div class="col-sm-4">
+          <label for="name"><strong class="mb-2">Nazwa *</strong></label>
+          <input id="name" name="name" type="text" class="form-control mb-4">
+        </div>
+        <div class="col-sm-4">
+          <label for="altitude"><strong class="mb-2">Wysokość *</strong></label>
+          <input id="altitude" name="altitude" type="text" class="form-control mb-4">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <label for="mountainRange"><strong class="mb-2">Pasmo górskie *</strong></label>
+          <input id="mountainRange" name="mountainRange" type="text" class="form-control mb-4">
+        </div>
+        <div class="col-sm-6">
+          <label for="country"><strong class="mb-2">Kraj *</strong></label>
+          <input id="country" name="country" type="text" class="form-control mb-4">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <label for="route"><strong class="mb-2">Droga / szlak</strong></label>
+          <input id="route" name="route" type="text" class="form-control mb-4">
+        </div>
+        <div class="col-sm-6">
+          <label for="difficulty"><strong class="mb-2">Trudność</strong></label>
+          <input id="difficulty" name="difficulty" type="text" class="form-control mb-4">
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-12">
+            <label for="userDescription"><strong class="mb-2">Komentarz</strong></label>
+            <textarea id="userDescription" name="userDescription" rows="6" class="form-control" 
+              maxlength="1000" #userDescription></textarea>
+            <small class="d-block text-muted mb-4 text-right">Pozostało {{1000 - userDescription.value.length}} znaków</small>
+          </div>
+      </div>
+    </form>
+  </div>
+  <div class="btn-group d-flex mt-4 justify-content-center">
+    <a [routerLink]="['/user/', authService.decodedToken?.nameid]" class="btn btn-info mr-2 w-100">Powrót</a>
+    <button [disabled]="!editForm.dirty" class="btn btn-success ml-2 w-100" form="editForm">Dodaj</button>
+  </div>
+</div>
